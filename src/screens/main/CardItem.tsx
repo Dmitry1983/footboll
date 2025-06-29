@@ -6,6 +6,7 @@ import {
   ViewStyle,
   TextStyle,
   Image,
+  ImageStyle,
   ActivityIndicator,
   View,
   StyleSheet,
@@ -17,6 +18,8 @@ import { Team } from './';
 interface Styles {
   container: StyleProp<ViewStyle>;
   text: StyleProp<TextStyle>;
+  imageContainer: StyleProp<ViewStyle>;
+  image: StyleProp<ImageStyle>;
 }
 
 const styles: Styles = {
@@ -35,6 +38,16 @@ const styles: Styles = {
     color: 'black',
     fontSize: 16,
     fontWeight: '600',
+  },
+  imageContainer: {
+    width: 48,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 48,
+    height: 48,
   },
 };
 
@@ -61,16 +74,9 @@ export const CardItem = React.memo((props: Team) => {
       activeOpacity={0.6}
       style={styles.container}
     >
-      <View
-        style={{
-          width: 48,
-          height: 48,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+      <View style={styles.imageContainer}>
         <Image
-          style={{ width: 48, height: 48 }}
+          style={styles.image}
           onLoadEnd={() => setLoading(false)}
           source={{
             uri: crest,

@@ -42,9 +42,8 @@ export const Header: React.FC<Props> = props => {
   const { name, crest } = props;
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 18, fontFamily: '600' }}>{name}</Text>
+      <Text style={styles.text}>{name}</Text>
       <Image
-        resizeMode="contain"
         source={{
           uri: crest,
         }}

@@ -45,7 +45,7 @@ const styles: Styles = {
 };
 
 export const ScheduledItem = React.memo((props: any) => {
-  console.log('ScheduledItemProps:', { props });
+  // console.log('ScheduledItemProps:', { props });
   const utcDate = get(props, ['utcDate'], '');
   const date = utcDate.slice(0, 10);
   const liga = get(props, ['competition', 'name'], '');
@@ -56,10 +56,6 @@ export const ScheduledItem = React.memo((props: any) => {
   const awayTeamCrest = get(props, ['awayTeam', 'crest'], '');
   const awayTeamShortName = get(props, ['awayTeam', 'shortName'], '');
 
-  const name = get(props, ['name'], '');
-  const nationality = get(props, ['nationality'], '');
-  const position = get(props, ['position'], '');
-
   return (
     <View style={styles.container}>
       <View style={styles.block}>
@@ -69,7 +65,7 @@ export const ScheduledItem = React.memo((props: any) => {
       <View style={styles.block}>
         <View style={styles.block}>
           <Image
-            style={{ width: 48, height: 48 }}
+            style={styles.image}
             source={{
               uri: awayTeamCrest,
             }}
@@ -80,7 +76,7 @@ export const ScheduledItem = React.memo((props: any) => {
         <View style={styles.block}>
           <Text style={styles.text}>{homeTeamShortName}</Text>
           <Image
-            style={{ width: 48, height: 48 }}
+            style={styles.image}
             source={{
               uri: homeTeamCrest,
             }}

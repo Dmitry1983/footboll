@@ -9,6 +9,7 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import { ThunkDispatch } from 'redux-thunk';
 import { useAppDispatch, useAppSelector } from '@src/store/store.hook';
 import { teamSelectors, fetchTeamsId, fetchTeamsIdMatches } from '@src/store';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -16,7 +17,6 @@ import { get, isNull } from 'lodash';
 import { TeamItem } from './TeamItem';
 import { ScheduledItem } from './ScheduledItem';
 import { Header } from './Headre';
-import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@src/appNavigation';
@@ -43,12 +43,11 @@ const styles: Styles = {
     justifyContent: 'center',
   },
   text: {
-    color: 'red',
+    textAlign: 'center',
   },
   contentContainerStyle: {
-    paddingTop: 8,
     gap: 8,
-    paddingHorizontal: 16,
+    padding: 16,
   },
 };
 
@@ -69,7 +68,6 @@ export const TeamScreen: React.FC<Props> = props => {
   const isIOS = React.useMemo(() => Platform.OS === 'ios', []);
 
   const id = get(props, ['route', 'params', 'id'], null);
-  const title = get(props, ['route', 'params', 'title'], '');
 
   const team = useAppSelector(teamSelectors.itemsSelector);
   const scheduled = useAppSelector(teamSelectors.scheduledSelector);
@@ -107,15 +105,10 @@ export const TeamScreen: React.FC<Props> = props => {
     <View style={styles.container(bottom, isIOS)}>
       <View style={styles.subContainer}>
         {loading && <ActivityIndicator size={'large'} />}
-        {error && <Text style={{ textAlign: 'center' }}>Error: {error}</Text>}
+        {error && <Text style={styles.text}>Error: {error}</Text>}
         {!loading && !error && (
           <>
-            <ScrollView
-              contentContainerStyle={{
-                gap: 8,
-                padding: 16,
-              }}
-            >
+            <ScrollView contentContainerStyle={styles.contentContainerStyle}>
               <Header {...imageProps} />
               <Title massage="SQUAD" />
               <Squad squad_={squad} />

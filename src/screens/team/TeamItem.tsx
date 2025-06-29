@@ -24,7 +24,7 @@ const styles: Styles = {
 };
 
 export const TeamItem = React.memo((props: any) => {
-  console.log('TeamItemProps:', { props });
+  // console.log('TeamItemProps:', { props });
   const dateOfBirth = get(props, ['dateOfBirth'], '');
   const name = get(props, ['name'], '');
   const nationality = get(props, ['nationality'], '');

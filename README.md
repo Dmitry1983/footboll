@@ -1,4 +1,4 @@
-Footboll,
+Football,
 
 ## API Documentation
 
