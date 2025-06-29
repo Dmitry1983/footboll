@@ -1,0 +1,19 @@
+meta {
+  name: match SCHEDULED
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://api.football-data.org/v4/teams/1/matches?status=SCHEDULED
+  body: none
+  auth: inherit
+}
+
+params:query {
+  status: SCHEDULED
+}
+
+headers {
+  X-Auth-Token: 1b03c9cdd1fc4c8096857c175968b8a0
+}
